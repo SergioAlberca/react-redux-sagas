@@ -4,7 +4,10 @@ import {
   FETCH_USERS_FAILURE,
   FETCH_DELETE_USER_REQUEST,
   FETCH_DELETE_USER_SUCCESS,
-  FETCH_DELETE_USERS_FAILURE,
+  FETCH_DELETE_USER_FAILURE,
+  FETCH_UPDATE_USER_REQUEST,
+  FETCH_UPDATE_USER_SUCCESS,
+  FETCH_UPDATE_USER_FAILURE,
 } from './actionTypes';
 
 export interface IUser {
@@ -71,6 +74,7 @@ export interface FetchDeleteUserFailurePayload {
 export type FetchDeleteUserRequest = {
   type: typeof FETCH_DELETE_USER_REQUEST;
   payload: FetchDeleteUserPayload;
+  history: any;
 };
 
 export type FetchDeleteUserSuccess = {
@@ -79,8 +83,36 @@ export type FetchDeleteUserSuccess = {
 };
 
 export type FetchDeleteUserFailure = {
-  type: typeof FETCH_DELETE_USERS_FAILURE;
+  type: typeof FETCH_DELETE_USER_FAILURE;
   payload: FetchDeleteUserFailurePayload;
+};
+
+/* Update User */
+export interface FetchUpdateUserPayload {
+  user: IUser;
+}
+
+export interface FetchUpdateUserSuccessPayload {
+  users: FetchUpdateUserRequest;
+}
+
+export interface FetchUpadateUserFailurePayload {
+  error: string;
+}
+
+export type FetchUpdateUserRequest = {
+  type: typeof FETCH_UPDATE_USER_REQUEST;
+  payload: FetchUpdateUserPayload;
+};
+
+export type FetchUpdateUserSuccess = {
+  type: typeof FETCH_UPDATE_USER_SUCCESS;
+  payload: FetchUpdateUserSuccessPayload;
+};
+
+export type FetchUpdateUserFailure = {
+  type: typeof FETCH_UPDATE_USER_FAILURE;
+  payload: FetchUpadateUserFailurePayload;
 };
 
 export type UserActions =
@@ -89,4 +121,7 @@ export type UserActions =
   | FetchUsersFailure
   | FetchDeleteUserRequest
   | FetchDeleteUserSuccess
-  | FetchDeleteUserFailure;
+  | FetchDeleteUserFailure
+  | FetchUpdateUserRequest
+  | FetchUpdateUserSuccess
+  | FetchUpdateUserFailure;

@@ -5,8 +5,6 @@ import { Card, CardActions, CardContent, IconButton, TextField } from '@material
 import DeleteForeverOutlinedIcon from '@material-ui/icons/Delete';
 import CreateIcon from '@material-ui/icons/Create';
 import SaveIcon from '@material-ui/icons/Save';
-import { useDispatch } from 'react-redux';
-import { fetchDeleteUser } from '../../store/users/actions';
 
 const StyledImg = styled.img`
   width: 85%;
@@ -34,15 +32,24 @@ const StyledInput = styled(TextField)`
 
 interface IDetailProps {
   user: IUser;
+  updateUser(user: IUser): void;
+  deleteUser(id: number): void;
 }
 
 function DetailCard(props: IDetailProps) {
-  const dispatch = useDispatch();
-
   const [isAvailabe, setIsAvailabe] = useState<boolean>(false);
+  const [firstName, setFirstName] = useState<string>('');
+  const [lastName, setLastName] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
 
-  const deleteUser = (id: number) => {
-    dispatch(fetchDeleteUser({ id }));
+  const getFormatData = (): IUser => {
+    return {
+      id: props.user.id,
+      first_name: firstName ? firstName : props.user.first_name,
+      last_name: lastName ? lastName : props.user.last_name,
+      avatar: props.user.avatar,
+      email: email ? email : props.user.email,
+    };
   };
 
   return (
@@ -58,32 +65,32 @@ function DetailCard(props: IDetailProps) {
         <StyledCard>
           <StyledCardContent>
             <StyledInput
-              id="standard-basic"
               label="Nombre"
               defaultValue={props.user.first_name}
               disabled={!isAvailabe}
+              onChange={(e) => setFirstName(e.target.value)}
             />
             <StyledInput
-              id="standard-basic"
               label="Apellido"
               defaultValue={props.user.last_name}
               disabled={!isAvailabe}
+              onChange={(e) => setLastName(e.target.value)}
             />
             <StyledInput
-              id="standard-basic"
               label="Email"
               defaultValue={props.user.email}
               disabled={!isAvailabe}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </StyledCardContent>
           <CardActions>
-            <IconButton aria-label="delete" onClick={() => deleteUser(props.user.id)}>
+            <IconButton aria-label="delete" onClick={() => props.deleteUser(props.user.id)}>
               <DeleteForeverOutlinedIcon fontSize="large" color="secondary" />
             </IconButton>
             <IconButton aria-label="delete" onClick={() => setIsAvailabe(!isAvailabe)}>
               <CreateIcon fontSize="large" />
             </IconButton>
-            <IconButton disabled={!isAvailabe}>
+            <IconButton disabled={!isAvailabe} onClick={() => props.updateUser(getFormatData())}>
               <SaveIcon fontSize="large" color="primary" />
             </IconButton>
           </CardActions>

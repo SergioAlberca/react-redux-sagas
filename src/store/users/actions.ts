@@ -4,7 +4,9 @@ import {
   FETCH_USERS_SUCCESS,
   FETCH_DELETE_USER_REQUEST,
   FETCH_DELETE_USER_SUCCESS,
-  FETCH_DELETE_USERS_FAILURE,
+  FETCH_DELETE_USER_FAILURE,
+  FETCH_UPDATE_USER_REQUEST,
+  FETCH_UPDATE_USER_SUCCESS,
 } from './actionTypes';
 import {
   FetchUsersRequest,
@@ -18,6 +20,11 @@ import {
   FetchDeleteUserSuccess,
   FetchDeleteUserFailurePayload,
   FetchDeleteUserFailure,
+  FetchUpdateUserRequest,
+  FetchUpdateUserPayload,
+  FetchUpdateUserSuccessPayload,
+  FetchUpdateUserSuccess,
+  FetchUpdateUserFailure,
 } from './types';
 
 export const fetchUsersRequest = (page: number): FetchUsersRequest => ({
@@ -35,9 +42,13 @@ export const fetchUsersFailure = (payload: FetchUsersFailurePayload): FetchUsers
   payload,
 });
 
-export const fetchDeleteUser = (payload: FetchDeleteUserPayload): FetchDeleteUserRequest => ({
+export const fetchDeleteUser = (
+  payload: FetchDeleteUserPayload,
+  history: any,
+): FetchDeleteUserRequest => ({
   type: FETCH_DELETE_USER_REQUEST,
   payload,
+  history,
 });
 
 export const fetchDeleteUserSuccess = (
@@ -50,6 +61,25 @@ export const fetchDeleteUserSuccess = (
 export const fetchDeleteUserfailure = (
   payload: FetchDeleteUserFailurePayload,
 ): FetchDeleteUserFailure => ({
-  type: FETCH_DELETE_USERS_FAILURE,
+  type: FETCH_DELETE_USER_FAILURE,
+  payload,
+});
+
+export const fetchUpdateUser = (payload: FetchUpdateUserPayload): FetchUpdateUserRequest => ({
+  type: FETCH_UPDATE_USER_REQUEST,
+  payload,
+});
+
+export const fetchUpdateUserSuccess = (
+  payload: FetchUpdateUserSuccessPayload,
+): FetchUpdateUserSuccess => ({
+  type: FETCH_UPDATE_USER_SUCCESS,
+  payload,
+});
+
+export const fetchUpdateUserFailure = (
+  payload: FetchUsersFailurePayload,
+): FetchUpdateUserFailure => ({
+  type: 'FETCH_UPDATE_USER_FAILURE',
   payload,
 });
