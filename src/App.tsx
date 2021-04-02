@@ -1,25 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import { useSelector } from 'react-redux';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import LoginPage from './pages/auth/login.page';
+import GuardedRoute from './guards/route.guard';
+import ListUsersPage from './pages/users/list/list-users';
+import { getIsAutenticatedSelector } from './store/auth/selectors';
+import DetailUsersPage from './pages/users/detail/detail-users';
 
 function App() {
+  const isAutenticated = useSelector(getIsAutenticatedSelector);
+
+  const isEnabled = (): boolean => {
+    return isAutenticated && sessionStorage.getItem('token') !== null;
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/login" component={LoginPage} />
+        <GuardedRoute path="/list-users" component={ListUsersPage} auth={isEnabled()} />
+        <GuardedRoute path="/detail-users/:id" component={DetailUsersPage} auth={isEnabled()} />
+        <Redirect to="/login"></Redirect>
+      </Switch>
+    </Router>
   );
 }
 
