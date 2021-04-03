@@ -1,46 +1,55 @@
-# Getting Started with Create React App
+# Proyecto realizado con Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este proyecto se inició con [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Scripts Disponibles
 
-In the project directory, you can run:
+En el directorio raíz se pueden utilizar los siguientes scripts.
+
+### `yarn install`
+
+Instala todas las dependencias que nos hacen falta para poder arrancar el proyecto, de lo contrario no podremos hacerlo.
 
 ### `yarn start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Levanta la aplicación en modo desarrollo.
+Abra [http: // localhost: 3000] (http: // localhost: 3000) para verlo en el navegador.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+La página se recargará si realiza modificaciones en el código.
+También verá errores o warnings de lint en la consola.
 
 ### `yarn test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Inicia la batería de test de la aplicación, en la consola se podrá ver el resultado de estos.
 
 ### `yarn build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Creará la release de producción de la app para desplegarla en cualquier servidor.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### `Librería implementadas`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    - Axios: Cliente http para hacer llamadas Ajax.
+    - react-router-dom: Librería para el enrutado de la aplicación.
+    - react-redux: Proporciona API que permiten que los componentes interactúen con Redux.
+    - redux: Librería para poder implementar el patrón redux en la app.
+    - redux-saga: Librería para tener un middleware de redux y poder realizar las acciones contra el store.
+    - @material-ui/core y @material-ui/lab: Librería de componentes al estilo material design para darle una interfaz agradable a la app.
+    - @material-ui/icons: Llibrería de iconos para implementarlos en los componentes de la interfaz.
+    - styled-components: librería para poder implementar los styled components de react
+    - reselect: librería de "selectores" simple para Redux.
+    - node-sass: para poder utilizar Sass en nuestros archivos de estilos.
+    - redux-logger: librería para poder ver en la consola todas las acciones y estados de redux más comodamente.
+    - eslint y prettier: para el formateo código.
+    - husky: para implementar los git hooks
 
-### `yarn eject`
+### `Cosas a comentar`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- En el login se han implementado las rutas protegidas teniendo en cuenta si existe un token y además un parámetro en el store que nos indica si está logeado o no, así se puede evitar cualquier error al refrescar la página ya que el store se resetearía en ese caso.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- En el apartado de detalle, la prueba especificaba el endpoint a llamar pero tras investigar la documentación de la api me di cuenta de que ese endpoint devolvía una información que nosotros ya teníamos almacenada en el store ya que es lo mismo que devuelven los elementos del listado con lo cual consideré oportuno ahorrarnos esa llamada.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- En lo referente a la acción de eliminar un usuario me di cuenta de que la api simula la llamada pero en realidad no borra ningún dato con lo cual consideré oportuno implementar la llamada al endpoint pero obviar la respuesta y eliminar yo manualmente del store el usuario seleccionado para que la aplicación siguiese el flujo correcto.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- El mismo criterio utilicé a la hora de actualizar un usuario ya que la Api en realidad no actualiza nada, con lo cual para seguir un flujo correcto implemento la llamada al enpoint pero obvio la respuesta y actulizo manualmente el usuario en el store.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+De esta manera conseguimos que la aplicación realmente consiga eliminar y actualizar usuarios. Espero que este punto de vista no haya sigo erróneo a la hora de realizar la prueba...

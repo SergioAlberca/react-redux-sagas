@@ -1,38 +1,34 @@
-import React from 'react';
-import styled from 'styled-components';
-import { Card, CardContent, CardActions, Button } from '@material-ui/core';
-import { IUser } from '../../store/users/types';
-
-const StyledCard = styled(Card)`
-  margin: 20px;
-  text-align: center;
-  padding: 10px !important;
-  border: 2px solid red;
-`;
-
-const StyledCardAction = styled(CardActions)`
-  justify-content: center;
-`;
+import React from "react";
+import { CardContent, Button } from "@material-ui/core";
+import { IUser } from "../../store/users/types";
+import {
+  StyledCardActionItem,
+  StyledCardItem,
+} from "../styled-common-components/styled-common-components";
 
 interface Props {
   user: IUser;
-  goToDetail: any;
+  goToDetail(value: number): void;
 }
 
 function CardItem(props: Props) {
   return (
-    <StyledCard>
+    <StyledCardItem>
       <CardContent>
         <img src={props.user.avatar} />
         <h2>{props.user.first_name}</h2>
         <h5>{props.user.email}</h5>
       </CardContent>
-      <StyledCardAction>
-        <Button variant="contained" color="primary" onClick={() => props.goToDetail(props.user.id)}>
+      <StyledCardActionItem>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => props.goToDetail(props.user.id)}
+        >
           Ver Detalle
         </Button>
-      </StyledCardAction>
-    </StyledCard>
+      </StyledCardActionItem>
+    </StyledCardItem>
   );
 }
 

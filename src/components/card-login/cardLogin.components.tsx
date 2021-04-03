@@ -1,54 +1,25 @@
-import React from 'react';
-import styled from 'styled-components';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import { Button, TextField } from '@material-ui/core';
-import logo from '../../assets/images/logo.png';
+import React from "react";
+import CardActions from "@material-ui/core/CardActions";
+import { Button } from "@material-ui/core";
+import logo from "../../assets/images/logo.png";
+import {
+  StyledCardContent,
+  StyledCardLogin,
+  StyledInput,
+  StyledLogo,
+} from "../styled-common-components/styled-common-components";
 
-const StyledCard = styled(Card)`
-  width: 50%;
-  height: auto;
-  background: white;
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  border: 2px solid red;
-  -webkit-box-shadow: 15px 9px 22px 9px rgba(0, 0, 0, 0.75) !important;
-  -moz-box-shadow: 15px 9px 22px 9px rgba(0, 0, 0, 0.75) !important;
-  box-shadow: 15px 9px 22px 9px rgba(0, 0, 0, 0.75) !important;
-  @media (max-width: 575.98px) {
-    width: 70%;
-  }
-`;
+interface IProps {
+  handleEmailValue(value: string): void;
+  handlePasswordValue(value: string): void;
+  login(): void;
+}
 
-const StyleContent = styled(CardContent)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-`;
-
-const StyledImg = styled.img`
-  width: 20%;
-  margin-bottom: 20px;
-  @media (max-width: 575.98px) {
-    width: 30%;
-  }
-`;
-
-const StyledInput = styled(TextField)`
-  width: 100%;
-  margin-bottom: 20px !important;
-`;
-
-function CardLogin(props: any) {
+function CardLogin(props: IProps) {
   return (
-    <StyledCard>
-      <StyleContent>
-        <StyledImg src={logo} />
+    <StyledCardLogin>
+      <StyledCardContent>
+        <StyledLogo src={logo} />
         <StyledInput
           id="outlined-basic"
           label="Email"
@@ -63,13 +34,17 @@ function CardLogin(props: any) {
           type="password"
           onChange={(e) => props.handlePasswordValue(e.target.value)}
         />
-      </StyleContent>
+      </StyledCardContent>
       <CardActions>
-        <Button variant="contained" color="primary" onClick={() => props.login()}>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => props.login()}
+        >
           Login
         </Button>
       </CardActions>
-    </StyledCard>
+    </StyledCardLogin>
   );
 }
 

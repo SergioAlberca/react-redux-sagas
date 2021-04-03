@@ -1,4 +1,4 @@
-import { all, call, put, SagaReturnType, takeLatest } from 'redux-saga/effects';
+import { all, call, put, SagaReturnType, takeLatest } from "redux-saga/effects";
 import {
   fetchDeleteUserfailure,
   fetchDeleteUserSuccess,
@@ -6,63 +6,78 @@ import {
   fetchUpdateUserSuccess,
   fetchUsersFailure,
   fetchUsersSuccess,
-} from './actions';
+} from "./actions";
 import {
   FETCH_DELETE_USER_REQUEST,
   FETCH_UPDATE_USER_REQUEST,
   FETCH_USERS_REQUEST,
-} from './actionTypes';
-import { getUsers } from '../../api/api';
-import { FetchDeleteUserRequest, FetchUpdateUserRequest, FetchUsersRequest } from './types';
+} from "./actionTypes";
+import { deleteUser, getUsers, updateUser } from "../../api/api";
+import {
+  FetchDeleteUserRequest,
+  FetchUpdateUserRequest,
+  FetchUsersRequest,
+} from "./types";
 
 function* fetchUsersSaga(data: FetchUsersRequest) {
   try {
-    const response: SagaReturnType<typeof getUsers> = yield call(getUsers, data.page);
+    const response: SagaReturnType<typeof getUsers> = yield call(
+      getUsers,
+      data.page
+    );
     yield put(
       fetchUsersSuccess({
         users: response.data.data,
         totalPages: response.data.total_pages,
         actualPage: response.data.page,
-      }),
+      })
     );
   } catch (e) {
     yield put(
       fetchUsersFailure({
         error: e.message,
-      }),
+      })
     );
   }
 }
 
 function* fetchDeleteUser(data: FetchDeleteUserRequest) {
   try {
+    const response: SagaReturnType<typeof deleteUser> = yield call(
+      deleteUser,
+      data.payload.id
+    );
     yield put(
       fetchDeleteUserSuccess({
         id: data.payload.id,
-      }),
+      })
     );
-    yield data.history.push('/list-users');
+    yield data.history.push("/list-users");
   } catch (error) {
     yield put(
       fetchDeleteUserfailure({
         error: error.message,
-      }),
+      })
     );
   }
 }
 
 function* fetchUpdateUser(data: FetchUpdateUserRequest) {
   try {
+    const response: SagaReturnType<typeof updateUser> = yield call(
+      updateUser,
+      data.payload.user
+    );
     yield put(
       fetchUpdateUserSuccess({
         users: data,
-      }),
+      })
     );
   } catch (error) {
     yield put(
       fetchUpdateUserFailure({
         error: error.message,
-      }),
+      })
     );
   }
 }
