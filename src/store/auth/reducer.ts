@@ -1,5 +1,9 @@
-import { FETCH_LOGIN_REQUEST, FETCH_LOGIN_SUCCESS, FETCH_LOGIN_FAILURE } from './actionTypes';
-import { LoginActions, LoginState } from './types';
+import {
+  FETCH_LOGIN_REQUEST,
+  FETCH_LOGIN_SUCCESS,
+  FETCH_LOGIN_FAILURE,
+} from "./actionTypes";
+import { LoginActions, LoginState } from "./types";
 
 const initialState: LoginState = {
   pending: false,
@@ -7,7 +11,7 @@ const initialState: LoginState = {
   error: null,
 };
 
-export default (state = initialState, action: LoginActions) => {
+export default (state = initialState, action: LoginActions): LoginState => {
   switch (action.type) {
     case FETCH_LOGIN_REQUEST:
       return {

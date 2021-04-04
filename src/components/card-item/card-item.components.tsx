@@ -17,6 +17,7 @@ function CardItem(props: Props) {
       <CardContent>
         <img src={props.user.avatar} />
         <h2>{props.user.first_name}</h2>
+        <h4>{props.user.last_name}</h4>
         <h5>{props.user.email}</h5>
       </CardContent>
       <StyledCardActionItem>

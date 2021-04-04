@@ -1,19 +1,19 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchUsersRequest } from '../../../store/users/actions';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUsersRequest } from "../../../store/users/actions";
 import {
   getActualPageSelector,
   getErrorSelector,
   getPendingSelector,
   getTotalPageSelector,
   getUserSelector,
-} from '../../../store/users/selectors';
-import CardItem from '../../../components/card-item/cardItem.components';
-import { IUser } from '../../../store/users/types';
-import Spinner from '../../../components/spinner/spinner';
-import AlertCustom from '../../../components/alert/alert.component';
-import { Button } from '@material-ui/core';
-import { useHistory } from 'react-router-dom';
+} from "../../../store/users/selectors";
+import CardItem from "../../../components/card-item/card-item.components";
+import { IUser } from "../../../store/users/types";
+import Spinner from "../../../components/spinner/spinner";
+import AlertCustom from "../../../components/alert/alert.component";
+import { Button } from "@material-ui/core";
+import { useHistory } from "react-router-dom";
 
 function ListUsersPage() {
   const dispatch = useDispatch();

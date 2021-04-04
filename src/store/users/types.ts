@@ -8,7 +8,7 @@ import {
   FETCH_UPDATE_USER_REQUEST,
   FETCH_UPDATE_USER_SUCCESS,
   FETCH_UPDATE_USER_FAILURE,
-} from './actionTypes';
+} from "./actionTypes";
 
 export interface IUser {
   id: number;
@@ -28,8 +28,8 @@ export interface UserState {
   pending: boolean;
   users: IUser[];
   error: string | null;
-  totalPages: number | null;
-  actualPage: number | null;
+  totalPages: number;
+  actualPage: number;
 }
 
 /* Fetch Users */

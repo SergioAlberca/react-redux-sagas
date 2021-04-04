@@ -1,19 +1,22 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import CardLogin from '../../components/card-login/cardLogin.components';
-import { fetchLoginRequest } from '../../store/auth/actions';
-import { getErrorSelector, getPendingSelector } from '../../store/auth/selectors';
-import { useHistory } from 'react-router-dom';
-import AlertCustom from '../../components/alert/alert.component';
-import Spinner from '../../components/spinner/spinner';
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import CardLogin from "../../components/card-login/card-login.components";
+import { fetchLoginRequest } from "../../store/auth/actions";
+import {
+  getErrorSelector,
+  getPendingSelector,
+} from "../../store/auth/selectors";
+import { useHistory } from "react-router-dom";
+import AlertCustom from "../../components/alert/alert.component";
+import Spinner from "../../components/spinner/spinner";
 
 function LoginPage() {
   const history = useHistory();
 
   const dispatch = useDispatch();
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const pending = useSelector(getPendingSelector);
   const error = useSelector(getErrorSelector);

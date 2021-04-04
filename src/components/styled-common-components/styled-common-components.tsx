@@ -17,7 +17,7 @@ export const StyledBackButton = styled(IconButton)`
 
 export const StyledInput = styled(TextField)`
   width: 100%;
-  margn-bottom: 20px !important;
+  margin-bottom: 20px !important;
 `;
 
 export const StyledLogo = styled.img`

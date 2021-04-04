@@ -7,7 +7,7 @@ import Spinner from "../../../components/spinner/spinner";
 import {
   getErrorSelector,
   getPendingSelector,
-} from "../../../store/auth/selectors";
+} from "../../../store/users/selectors";
 import { fetchDeleteUser, fetchUpdateUser } from "../../../store/users/actions";
 import { getUserSelector } from "../../../store/users/selectors";
 import { IUser } from "../../../store/users/types";

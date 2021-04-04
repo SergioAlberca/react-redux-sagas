@@ -1,4 +1,4 @@
-import { setUsers } from '../../utils/utils';
+import { setUsers } from "../../utils/utils";
 import {
   FETCH_USERS_REQUEST,
   FETCH_USERS_SUCCESS,
@@ -9,18 +9,18 @@ import {
   FETCH_UPDATE_USER_REQUEST,
   FETCH_UPDATE_USER_SUCCESS,
   FETCH_UPDATE_USER_FAILURE,
-} from './actionTypes';
-import { UserActions, UserState } from './types';
+} from "./actionTypes";
+import { UserActions, UserState } from "./types";
 
 const initialState: UserState = {
   pending: false,
   users: [],
   error: null,
-  totalPages: 0,
+  totalPages: 1,
   actualPage: 1,
 };
 
-export default (state = initialState, action: UserActions) => {
+export default (state = initialState, action: UserActions): UserState => {
   switch (action.type) {
     case FETCH_USERS_REQUEST:
       return {
@@ -40,7 +40,7 @@ export default (state = initialState, action: UserActions) => {
       return {
         ...state,
         pending: false,
-        todos: [],
+        users: [],
         error: action.payload.error,
       };
     case FETCH_DELETE_USER_REQUEST:
