@@ -1,31 +1,38 @@
-import { createSelector } from "reselect";
-import { AppState } from "../rootReducer";
+import { createSelector } from 'reselect'
+import { AppState } from '../rootReducer'
 
-const getPending = (state: AppState) => state.users.pending;
+const getPending = (state: AppState) => state.users.pending
 
-const getUsers = (state) => state.users.users;
+const getUsers = (state) => state.users.users
 
-const getError = (state: AppState) => state.users.error;
+const getError = (state: AppState) => state.users.error
 
-const getActualPage = (state: AppState) => state.users.actualPage;
+const getActualPage = (state: AppState) => state.users.actualPage
 
-const getTotalPage = (state: AppState) => state.users.totalPages;
+const getTotalPage = (state: AppState) => state.users.totalPages
+
+const getDetailUserError = (state: AppState) => state.users.detailUserError
 
 export const getPendingSelector = createSelector(
   getPending,
   (pending) => pending
-);
+)
 
-export const getUserSelector = createSelector(getUsers, (users) => users);
+export const getUserSelector = createSelector(getUsers, (users) => users)
 
-export const getErrorSelector = createSelector(getError, (error) => error);
+export const getErrorSelector = createSelector(getError, (error) => error)
 
 export const getActualPageSelector = createSelector(
   getActualPage,
   (actualPage) => actualPage
-);
+)
 
 export const getTotalPageSelector = createSelector(
   getTotalPage,
   (totalPages) => totalPages
-);
+)
+
+export const getDetailUserErrorSelector = createSelector(
+  getDetailUserError,
+  (detailUserError) => detailUserError
+)

@@ -21,14 +21,14 @@ function CardLogin(props: IProps) {
       <StyledCardContent>
         <StyledLogo src={logo} />
         <StyledInput
-          id="outlined-basic"
+          id="email-input"
           label="Email"
           variant="outlined"
           type="email"
           onChange={(e) => props.handleEmailValue(e.target.value)}
         />
         <StyledInput
-          id="outlined-basic-2"
+          id="password-input"
           label="Password"
           variant="outlined"
           type="password"

@@ -1,14 +1,14 @@
-import React from "react";
-import { CardContent, Button } from "@material-ui/core";
-import { IUser } from "../../store/users/types";
+import React from 'react'
+import { CardContent, Button } from '@material-ui/core'
+import { IUser } from '../../store/users/types'
 import {
   StyledCardActionItem,
   StyledCardItem,
-} from "../styled-common-components/styled-common-components";
+} from '../styled-common-components/styled-common-components'
 
 interface Props {
-  user: IUser;
-  goToDetail(value: number): void;
+  user: IUser
+  goToDetail(value: number): void
 }
 
 function CardItem(props: Props) {
@@ -30,7 +30,7 @@ function CardItem(props: Props) {
         </Button>
       </StyledCardActionItem>
     </StyledCardItem>
-  );
+  )
 }
 
-export default CardItem;
+export default CardItem

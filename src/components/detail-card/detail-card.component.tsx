@@ -72,19 +72,22 @@ function DetailCard(props: IDetailProps) {
           <CardActions>
             <IconButton
               aria-label="delete"
+              data-testid="delete"
               onClick={() => props.deleteUser(props.user.id)}
             >
               <DeleteForeverOutlinedIcon fontSize="large" color="secondary" />
             </IconButton>
             <Tooltip title="Habilita el formulario para editar">
               <IconButton
-                aria-label="delete"
+                aria-label="enabled"
+                data-testid="enabled"
                 onClick={() => setIsAvailabe(!isAvailabe)}
               >
                 <CreateIcon fontSize="large" />
               </IconButton>
             </Tooltip>
             <IconButton
+              data-testid="update"
               disabled={!isAvailabe}
               onClick={() => props.updateUser(getFormatData())}
             >
